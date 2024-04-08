@@ -16,10 +16,10 @@ class Configurador:
             return Factory_persistencia_sqlite(configuracio['ruta'])
         
         elif configuracio['motor'] == 'component':
+            print("retornant configuracio component")
             return Factory_persistencia_rabbitmq(
                 configuracio['host'], 
                 configuracio['queue'], 
-                configuracio['routing_key'], 
-                configuracio['exchange'])
+                configuracio['routing_key'])
         else:
             raise ValueError("No s'ha trobat la persistencia")

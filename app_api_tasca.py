@@ -2,7 +2,7 @@
 
 import flask
 from app_core_tasca import App_core_tasca
-import tasca
+from tasca import Tasca
 import json
 import sys,os
 
@@ -31,9 +31,9 @@ def get_tasks():
 def add_task():
     info_body = flask.request.get_data()    #info_body = '{"title": "hola"}' -> str
     tasca_nova = json.loads(info_body)      #tasca_nova = {"title": "hola"}  -> dictionary
-    objecte_tasca = tasca.Tasca(None, tasca_nova["title"]) # Object.Tasca -> tasca.Tasca
+    objecte_tasca = Tasca(None, tasca_nova["title"]) # Object.Tasca -> tasca.Tasca
     resultat = core_app.afegeix_tasca(objecte_tasca) #--> None
-    return "", 201
+    return "", 204
 #==========
 # PUT
 #==========
@@ -41,7 +41,7 @@ def add_task():
 def update_task():
     info_body = flask.request.get_data()    #info_body = '{"title": "hola"}' -> str
     tasca_nova = json.loads(info_body)      #tasca_nova = {"title": "hola"}  -> dictionary
-    objecte_tasca = tasca.Tasca(
+    objecte_tasca = Tasca(
         None, tasca_nova["title"], 
         tasca_nova["done"], 
         tasca_nova["id"]

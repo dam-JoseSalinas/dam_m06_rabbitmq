@@ -1,2 +1,4 @@
-motor: sqlite
-ruta: todo_list.db
+motor: component
+host: localhost
+queue: desa
+routing_key: desa

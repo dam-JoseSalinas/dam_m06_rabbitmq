@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-import tasca_persistencia
+from tasca_persistencia import Tasca_persistencia
 import sqlite3
 import tasca
 
-class Tasca_persistencia_sqlite(tasca_persistencia.Ipersistencia_tasca):
+class Tasca_persistencia_sqlite(Tasca_persistencia):
     def __init__(self, ruta):
         self._ruta = ruta
         if not self.existeixen_taules():
