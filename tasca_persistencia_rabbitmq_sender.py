@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from tasca_persistencia import Tasca_persistencia
 import pika
+import json
 
 class Tasca_persistencia_rabbitmq_sender(Tasca_persistencia):
     def __init__(self, host, queue, routing_key, exchange=''):
@@ -11,7 +12,7 @@ class Tasca_persistencia_rabbitmq_sender(Tasca_persistencia):
 
     def desa(self, tasca):
         missatge_body = { 
-            "operacio": "desa", 
+            "operacio": "desa",
             "tasca" : str(tasca)
         }
 
@@ -19,7 +20,7 @@ class Tasca_persistencia_rabbitmq_sender(Tasca_persistencia):
         channel = connection.channel()
         channel.queue_declare(queue=self._queue)
 
-        channel.basic_publish(exchange=self._exchange, routing_key=self._routing_key, body=str(missatge_body))
+        channel.basic_publish(exchange=self._exchange, routing_key=self._routing_key, body=json.dumps(missatge_body))
         connection.close()
     
         resultat = None

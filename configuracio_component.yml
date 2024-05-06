@@ -1,3 +1,4 @@
+motor: component
 host: localhost
 queue: desa
 routing_key: desa

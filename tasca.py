@@ -54,7 +54,7 @@ class Tasca():
         return resultat
 
     def __str__(self):
-        resultat = {'id': self._id, 'titol': self._titol, 'done': self._done}
+        resultat = {"id": self._id, "titol": self._titol, "done": self._done}
         return json.dumps(resultat)
     
     def __repr__(self):

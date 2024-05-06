@@ -6,7 +6,7 @@ from factory_persistencia_rabbitmq import Factory_persistencia_rabbitmq
 
 class Configurador:
     def get_configuracio():
-        with open('configuracio.yml', 'r') as f:
+        with open('configuracio_component.yml', 'r') as f:
             configuracio = yaml.load(f, Loader=yaml.SafeLoader)
         return configuracio
     
