@@ -1,6 +1,7 @@
 import pika
 from configurador_db import Configurador_db
 from tasca import Tasca
+import sys, os
 import json
 import string
 class Tasca_persistencia_rabbitmq_reciever:
@@ -20,13 +21,15 @@ class Tasca_persistencia_rabbitmq_reciever:
             if len(tasca) > 0:
                 tasca_objecte = Tasca(tasca_persistencia, tasca["titol"])
             if operacio == "desa":
+                input("Enter para continuar o Ctrl+c para parar ejeccucion y hacer que el ack no se envie")
                 tasca_objecte.desa()
-            print("guardado")
+                ch.basic_ack(delivery_tag = method.delivery_tag)
+                print("guardado")
     def operacio(self):
         connection = pika.BlockingConnection(pika.ConnectionParameters(host=self._host))
         channel = connection.channel()
         channel.queue_declare(queue=self._queue)
-        channel.basic_consume(queue=self._queue, on_message_callback=self.callback, auto_ack=True)
+        channel.basic_consume(queue=self._queue, on_message_callback=self.callback)
         channel.start_consuming()
 if __name__ == "__main__":
     receiver = Tasca_persistencia_rabbitmq_reciever('localhost', 'desa', 'desa')
