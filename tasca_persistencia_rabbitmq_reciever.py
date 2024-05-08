@@ -29,7 +29,7 @@ class Tasca_persistencia_rabbitmq_reciever:
         connection = pika.BlockingConnection(pika.ConnectionParameters(host=self._host))
         channel = connection.channel()
         channel.queue_declare(queue=self._queue)
-        channel.basic_consume(queue=self._queue, on_message_callback=self.callback)
+        channel.basic_consume(queue=self._queue, on_message_callback=self.callback, auto_ack=False)
         channel.start_consuming()
 if __name__ == "__main__":
     receiver = Tasca_persistencia_rabbitmq_reciever('localhost', 'desa', 'desa')
