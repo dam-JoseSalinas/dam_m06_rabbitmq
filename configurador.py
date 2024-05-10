@@ -16,7 +16,6 @@ class Configurador:
             return Factory_persistencia_sqlite(configuracio['ruta'])
         
         elif configuracio['motor'] == 'component':
-            print("retornant configuracio component")
             return Factory_persistencia_rabbitmq(
                 configuracio['host'], 
                 configuracio['queue'], 

@@ -1,4 +1,4 @@
 motor: component
 host: localhost
-queue: desa
-routing_key: desa
+queue: operacio
+routing_key: operacio
